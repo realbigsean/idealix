@@ -1,0 +1,234 @@
+set showmode
+set incsearch
+
+" Enable which-key extension
+set which-key
+" Disable which-key timeout, i.e. show the menu until you press a key
+set notimeout
+
+set surround
+
+let g:WhichKey_ShowVimActions = "false"
+
+" LEADER_KEYS
+let mapleader = " "
+
+let g:WhichKeyDesc_Files = "<leader>f    Find in files"
+let g:WhichKeyDesc_Path = "<leader>/    Find in path"
+let g:WhichKeyDesc_Windows = "<leader>w    Windows"
+let g:WhichKeyDesc_Recent = "<leader>b    Recent files"
+let g:WhichKeyDesc_Action = "<leader>a    Perform code action"
+let g:WhichKeyDesc_Rename = "<leader>r    Rename symbol"
+let g:WhichKeyDesc_Diag = "<leader>d    Open diagnostics picker"
+
+" Window movement
+let g:WhichKeyDesc_SplitVert = "<leader>wv  Split vertically"
+let g:WhichKeyDesc_SplitHorz = "<leader>ws  Split horizontally"
+let g:WhichKeyDesc_CloseAll = "<leader>wq   Close all editors"
+let g:WhichKeyDesc_CloseOther = "<leader>wo  Close other editors"
+
+" Focus window
+let g:WhichKeyDesc_FocusLeft = "<leader>wh  Focus left window"
+let g:WhichKeyDesc_FocusDown = "<leader>wj  Focus down window"
+let g:WhichKeyDesc_FocusUp = "<leader>wk    Focus up window"
+let g:WhichKeyDesc_FocusRight = "<leader>wl  Focus right window"
+
+" Clipboard operations
+let g:WhichKeyDesc_Copy = "<leader>y  Copy to clipboard"
+let g:WhichKeyDesc_Paste = "<leader>p  Paste from clipboard"
+
+let g:WhichKeyDesc_GoToFileStart = "gg   Goto first line"
+let g:WhichKeyDesc_GoToEndOfFile = "ge   Goto last line"
+let g:WhichKeyDesc_GoToFilesInSelection = "gf   List open files"
+let g:WhichKeyDesc_GoToLineStart = "gh   Goto line start"
+let g:WhichKeyDesc_GoToLineEnd = "gl   Goto line end"
+let g:WhichKeyDesc_GoToFirstNonWhitespace = "gs   Goto first non-whitespace char"
+let g:WhichKeyDesc_GoToWindowTop = "gt   Goto window top"
+let g:WhichKeyDesc_GoToWindowCenter = "gc   Goto window center"
+let g:WhichKeyDesc_GoToWindowBottom = "gb   Goto window bottom"
+let g:WhichKeyDesc_GoToDefinition = "gd   Goto definition"
+let g:WhichKeyDesc_GoToTypeDefinition = "gy   Goto type definition"
+let g:WhichKeyDesc_GoToReferences = "gr   Goto references"
+let g:WhichKeyDesc_GoToImplementation = "gi   Goto implementation"
+let g:WhichKeyDesc_GoToLastAccessedFile = "ga   Goto last accessed file"
+let g:WhichKeyDesc_GoToLastModifiedFile = "gm   Goto last modified file"
+let g:WhichKeyDesc_GoToNextBuffer = "gn   Goto next buffer"
+let g:WhichKeyDesc_GoToPrevBuffer = "gp   Goto previous buffer"
+let g:WhichKeyDesc_GoToLastModification = "g.   Goto last modification"
+
+let g:WhichKeyDesc_GotoMatchingBracket = "mm   Goto matching bracket"
+let g:WhichKeyDesc_SurroundAdd = "ms   Surround selection with char"
+let g:WhichKeyDesc_SurroundReplace = "mr   Replace surround char <from> with <to>"
+let g:WhichKeyDesc_SurroundDelete = "md   Delete surround char"
+let g:WhichKeyDesc_SelectTextobjectAround = "ma   Select around textobject"
+let g:WhichKeyDesc_SelectTextobjectInner = "mi   Select inside textobject"
+let g:WhichKeyDesc_SelectWordOuter = "maw   Select around word"
+let g:WhichKeyDesc_SelectBracketsOuter = "mam   Select around matching"
+let g:WhichKeyDesc_SelectFuncOuter = "maf   Select around function"
+let g:WhichKeyDesc_SelectBracketsInner = "mim   Select inside matching"
+let g:WhichKeyDesc_SelectFuncInner = "mif   Select inside function"
+
+let g:WhichKeyDesc_NextParagraph = "]p   Next paragraph"
+let g:WhichKeyDesc_PrevParagraph = "[p   Previous paragraph"
+let g:WhichKeyDesc_NextMatching = "]m   Next matching brace"
+let g:WhichKeyDesc_PrevMatching = "[m   Previous matching brace"
+let g:WhichKeyDesc_NextFunction = "]f   Next function"
+let g:WhichKeyDesc_PrevFunction = "[f   Previous function"
+let g:WhichKeyDesc_NextChange = "]g   Next change"
+let g:WhichKeyDesc_PrevChange = "[g   Previous change"
+
+<leader>
+
+" Search everywhere
+nnoremap <leader>/ :action FindInPath<cr>
+vnoremap <leader>/ :action FindInPath<cr>
+
+" Find file
+nnoremap <leader>f :action GotoFile<cr>
+vnoremap <leader>f :action GotoFile<cr>
+
+" Diagnotics
+nnoremap <leader>d :action ActivateProblemsViewToolWindow<CR>
+vnoremap <leader>d :action ActivateProblemsViewToolWindow<CR>
+
+" Recent files (simulation of buffers)
+nnoremap <leader>b :action RecentFiles<cr>
+vnoremap <leader>b :action RecentFiles<cr>
+
+" Window movement
+nnoremap <leader>wv :action SplitVertically<cr>
+nnoremap <leader>ws :action SplitHorizontally<cr>
+nnoremap <leader>wq :action SplitHorizontally<cr>
+nnoremap <leader>ws :action SplitHorizontally<cr>
+
+" Close window
+nnoremap <leader>wq    :action CloseAllEditors<CR>
+nnoremap <leader>wo    :action CloseAllEditorsButActive<CR>
+
+" Focus window left
+nnoremap <leader>wh         <C-w>h
+
+" Focus window down
+nnoremap <leader>wj         <C-w>j
+
+" Focus window up
+nnoremap <leader>wk       <C-w>k
+
+" Focus window right
+nnoremap <leader>wl          <C-w>l
+
+" Copy to clipboard
+vnoremap <leader>y "+y
+
+" Paste from clipboard
+vnoremap <leader>p "+p
+
+" Code actions
+nnoremap <leader>a :action ShowIntentionActions<cr>
+
+" Vim surround
+unmap ds
+map md <Plug>DSurround
+map mr <Plug>CSurround
+map ms <Plug>YSurround
+
+nnoremap d x
+vnoremap d :action EditorDelete<CR>
+nnoremap x V
+vnoremap x :action EditorDownWithSelection<CR>
+nnoremap w :action EditorNextWordWithSelection<CR>
+vnoremap w <ESC>:action EditorNextWordWithSelection<CR>
+nnoremap b :action EditorPreviousWordWithSelection<CR>
+vnoremap b <ESC>:action EditorPreviousWordWithSelection<CR>
+
+nnoremap <leader>r :action RenameElement<CR>
+
+" Go to line number <n> else start of file
+nnoremap gg :normal! gg<CR>
+
+" Go to the end of the file
+nnoremap ge G
+
+" Go to files in the selection (no exact equivalent, but using :buffers to list open files)
+nnoremap gf :buffers<CR>
+
+" Go to the start of the line
+nnoremap gh :action EditorLineStartWithSelection<CR>
+
+" Go to the end of the line
+nnoremap gl :action EditorLineEndWithSelection<CR>
+
+" Go to first non-whitespace character of the line
+nnoremap gs ^
+
+" Go to the top of the screen
+nnoremap gt H
+
+" Go to the middle of the screen
+nnoremap gc M
+
+" Go to the bottom of the screen
+nnoremap gb L
+
+" Go to definition (LSP)
+nnoremap gd :action GotoDeclaration<CR>
+
+" Go to type definition (LSP) (no exact equivalent, but using GotoDeclaration)
+nnoremap gy :action GotoDeclaration<CR>
+
+" Go to references (LSP)
+nnoremap gr :action FindUsages<CR>
+
+" Go to implementation (LSP)
+nnoremap gi :action GotoImplementation<CR>
+
+" Go to the last accessed/alternate file (no exact equivalent, but using :b# to switch to the last buffer)
+nnoremap ga :b#<CR>
+
+" Go to the last modified/alternate file (no exact equivalent, but using :b# to switch to the last buffer)
+nnoremap gm :b#<CR>
+
+" Go to next buffer
+nnoremap gn :bnext<CR>
+
+" Go to previous buffer
+nnoremap gp :bprev<CR>
+
+" Go to last modification in current file (no exact equivalent, but using '. to go to the last change)
+nnoremap g. :action JumpToLastChange<CR>
+
+" Goto matching bracket (TS)
+nnoremap mm :action EditorMatchBrace<CR>
+vnoremap mm :action EditorMatchBrace<CR>
+
+nnoremap maw :action EditorSelectWord<CR>
+
+" Next and previous change
+nnoremap ]g :action JumpToNextChange<CR>
+nnoremap [g :action JumpToLastChange<CR>
+
+" Next and previous functions
+nnoremap ]f :action MethodDown<CR>
+nnoremap [f :action MethodUp<CR>
+
+nnoremap ]p :action EditorCodeBlockEndWithSelection<CR>
+vnoremap ]p :action EditorCodeBlockEndWithSelection<CR>
+nnoremap [p :action EditorCodeBlockStartWithSelection<CR>
+vnoremap [p :action EditorCodeBlockStartWithSelection<CR>
+
+nnoremap ]m :action EditorCodeBlockEndWithSelection<CR>
+vnoremap ]m :action EditorCodeBlockEndWithSelection<CR>
+nnoremap [m :action EditorCodeBlockStartWithSelection<CR>
+vnoremap [m :action EditorCodeBlockStartWithSelection<CR>
+
+" FIXME
+vnoremap %s :action SelectAllOccurrences<CR>
+
+nnoremap U <C-R>
+
+nnoremap mim :action EditorMatchBrace<CR> :action EditorLeft<CR> :action EditorRightWithSelection<CR> :action EditorCodeBlockEndWithSelection<CR>
+nnoremap mam :action EditorMatchBrace<CR> :action EditorCodeBlockEndWithSelection<CR>
+
+nnoremap maf :action MethodUp<CR> :action EditorCodeBlockEndWithSelection<CR>
+nnoremap mif :action MethodUp<CR> :action EditorCodeBlockEndWithSelection<CR>
+
